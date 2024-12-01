@@ -1,0 +1,188 @@
+//
+//  Variables
+//  ---------------------------------------------
+
+@header__background-color: @menu__background-color;
+@header__color: @color-white;
+@header__z-index: @menu__z-index - 1;
+
+@search__width: 400px;
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        display: grid;
+        grid-template-columns: 1fr @search__width 1fr;
+        gap: 2rem;
+        justify-content: center;
+        align-items: center;
+        background: @header__background-color;
+        color: @header__color;
+        width: 100%;
+        padding: 1rem 1rem 1rem 9.8rem;
+        z-index: @header__z-index;
+        height: 6rem;
+
+        &__right {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+
+            .admin__action-dropdown {
+                background: @header__background-color;
+                color: @header__color;
+                border: none !important;
+                box-shadow: none !important;
+            }
+
+            .admin__action-dropdown:after,
+            .admin__action-dropdown:before {
+                color: @header__color !important;
+            }
+
+            .admin-user .admin__action-dropdown:after {
+                border-color: @header__color transparent transparent transparent !important;
+            }
+
+            .admin__action-dropdown-menu {
+                border: none !important;
+                z-index: 2;
+            }
+        }
+    }
+
+    .search {
+        position: relative;
+        color: @color-black;
+
+        svg {
+            display: block;
+            max-width: 100%;
+        }
+
+        &__icon {
+            width: 16px;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: .751rem;
+            transition: opacity .2s ease-in-out;
+        }
+
+        &._loading {
+            .search__icon {
+                opacity: .5;
+            }
+        }
+
+        &__input {
+            min-width: @search__width;
+            border: none;
+            border-radius: .5rem;
+            padding: .5rem 6.5rem .5rem ~'calc(1.5rem + 16px)';
+            color: black;
+        }
+
+        &__hotkey {
+            position: absolute;
+            top: 50%;
+            right: .425rem;
+            height: 2rem;
+            transform: translateY(-50%);
+            font-size: 1rem;
+            line-height: 1;
+            color: @header__color;
+            background: @header__background-color;
+            padding: .5rem;
+            border-radius: .275rem;
+        }
+
+        &__results {
+            position: absolute;
+            bottom: -.5rem;
+            left: 0;
+            transform: translateY(100%);
+            padding: 1rem;
+            background: @color-white;
+            color: @color-black;
+            width: 100%;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, .1), 0 2px 4px rgba(0, 0, 0, .06);
+
+            &__empty {
+                padding: 1rem;
+            }
+        }
+
+        &__hits {
+            margin: 0;
+        }
+
+        &__hit {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: .75rem 1rem;
+            border-radius: .5rem;
+            overflow: hidden;
+            cursor: pointer;
+
+            &:focus,
+            &:hover {
+                box-shadow: none;
+                background: @color-lighter-gray;
+            }
+
+            &__icon {
+                width: 18px;
+                display: flex;
+                justify-content: center;
+            }
+
+            &__content {
+                max-width: ~'calc(100% - 28px)';
+
+                &__secondary {
+                    display: flex;
+                    flex-wrap: nowrap;
+                    gap: 5px;
+
+                    span {
+                        font-size: 1.2rem;
+                        color: @color-very-dark-gray2;
+                        text-wrap: nowrap;
+                    }
+                }
+            }
+        }
+
+        ._ellipsis {
+            max-width: 100%;
+            overflow: hidden;
+            text-wrap: nowrap;
+            text-overflow: ellipsis;
+        }
+    }
+
+    .page-wrapper {
+        margin-top: 6rem !important;
+    }
+
+    .menu-wrapper .logo {
+        height: 6rem !important;
+
+        .logo-img {
+            height: 2.75rem !important;
+        }
+    }
+
+    .page-main-actions .page-actions._fixed {
+        top: 6rem !important;
+    }
+}

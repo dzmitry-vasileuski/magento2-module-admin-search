@@ -1,0 +1,57 @@
+<?php
+/**
+ * @var \Magento\Framework\View\Element\Template $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+
+/** @var \Vasileuski\AdminSearch\Model\Search $search */
+$search = $block->getSearch();
+?>
+
+<header class="header">
+    <div class="header__left">
+        <?= $block->getChildHtml('header.left') ?>
+    </div>
+    <div class="header__middle" data-bind="scope: 'search'">
+        <?php if ($search->getAllowedIndices()): ?>
+        <div class="search _placeholder">
+            <div class="search__icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="#000000" fill="none">
+                    <path d="M17.5 17.5L22 22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M20 11C20 6.02944 15.9706 2 11 2C6.02944 2 2 6.02944 2 11C2 15.9706 6.02944 20 11 20C15.9706 20 20 15.9706 20 11Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
+                </svg>
+            </div>
+            <input class="search__input" data-bind="textInput: query, attr: { placeholder: $t('Search'), 'aria-label': $t('Search') }"/>
+            <!-- ko if: isMacOS() -->
+            <div class="search__hotkey">⌘ + K</div>
+            <!-- /ko -->
+            <!-- ko ifnot: isMacOS() -->
+            <div class="search__hotkey">CTRL + K</div>
+            <!-- /ko -->
+        </div>
+        <!--ko template: getTemplate() --><!-- /ko -->
+        <?php endif ?>
+    </div>
+    <div class="header__right">
+        <?= $block->getChildHtml('header.right') ?>
+    </div>
+</header>
+
+<?php if ($search->getAllowedIndices()): ?>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Magento_Ui/js/core/app": {
+               "components": {
+                    "search": {
+                        "component": "Vasileuski_AdminSearch/js/view/search",
+                        "config": {
+                            "searchUrl": "<?= $block->getUrl('search') ?>"
+                        }
+                    }
+                }
+            }
+        }
+    }
+</script>
+<?php endif ?>

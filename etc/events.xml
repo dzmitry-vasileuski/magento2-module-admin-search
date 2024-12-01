@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="catalogrule_rule_save_commit_after">
+        <observer name="admin_search_index" instance="Vasileuski\AdminSearch\Observer\CatalogPriceRuleReindex"/>
+    </event>
+    <event name="catalogrule_rule_delete_commit_after">
+        <observer name="admin_search_index" instance="Vasileuski\AdminSearch\Observer\CatalogPriceRuleReindex"/>
+    </event>
+    <event name="salesrule_rule_save_commit_after">
+        <observer name="admin_search_index" instance="Vasileuski\AdminSearch\Observer\CartPriceRuleReindex"/>
+    </event>
+    <event name="salesrule_rule_delete_commit_after">
+        <observer name="admin_search_index" instance="Vasileuski\AdminSearch\Observer\CartPriceRuleReindex"/>
+    </event>
+    <event name="catalog_category_save_commit_after">
+        <observer name="admin_search_reindex" instance="Vasileuski\AdminSearch\Observer\CategoryReindex"/>
+    </event>
+    <event name="catalog_category_delete_commit_after">
+        <observer name="admin_search_reindex" instance="Vasileuski\AdminSearch\Observer\CategoryReindex"/>
+    </event>
+    <event name="customer_save_commit_after">
+        <observer name="admin_search_reindex" instance="Vasileuski\AdminSearch\Observer\CustomerReindex"/>
+    </event>
+    <event name="customer_delete_commit_after">
+        <observer name="admin_search_reindex" instance="Vasileuski\AdminSearch\Observer\CustomerReindex"/>
+    </event>
+    <event name="sales_order_save_commit_after">
+        <observer name="admin_search_reindex" instance="Vasileuski\AdminSearch\Observer\OrderReindex"/>
+    </event>
+    <event name="sales_order_delete_commit_after">
+        <observer name="admin_search_reindex" instance="Vasileuski\AdminSearch\Observer\OrderReindex"/>
+    </event>
+    <event name="cms_page_save_commit_after">
+        <observer name="admin_search_reindex" instance="Vasileuski\AdminSearch\Observer\PageReindex"/>
+    </event>
+    <event name="cms_page_delete_commit_after">
+        <observer name="admin_search_reindex" instance="Vasileuski\AdminSearch\Observer\PageReindex"/>
+    </event>
+    <event name="catalog_product_save_commit_after">
+        <observer name="admin_search_reindex" instance="Vasileuski\AdminSearch\Observer\ProductReindex"/>
+    </event>
+    <event name="catalog_product_delete_commit_after">
+        <observer name="admin_search_reindex" instance="Vasileuski\AdminSearch\Observer\ProductReindex"/>
+    </event>
+</config>

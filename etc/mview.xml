@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Mview/etc/mview.xsd">
+    <view id="admin_search_catalog_price_rules" class="Vasileuski\AdminSearch\Model\Indexer\CatalogPriceRule" group="indexer">
+        <subscriptions>
+            <table name="catalogrule" entity_column="rule_id"/>
+        </subscriptions>
+    </view>
+    <view id="admin_search_cart_price_rules" class="Vasileuski\AdminSearch\Model\Indexer\CartPriceRule" group="indexer">
+        <subscriptions>
+            <table name="salesrule" entity_column="rule_id"/>
+        </subscriptions>
+    </view>
+    <view id="admin_search_categories" class="Vasileuski\AdminSearch\Model\Indexer\Category" group="indexer">
+        <subscriptions>
+            <table name="catalog_category_entity" entity_column="entity_id"/>
+            <table name="catalog_category_entity_varchar" entity_column="entity_id"/>
+        </subscriptions>
+    </view>
+    <view id="admin_search_customers" class="Vasileuski\AdminSearch\Model\Indexer\Customer" group="indexer">
+        <subscriptions>
+            <table name="customer_entity" entity_column="entity_id"/>
+        </subscriptions>
+    </view>
+    <view id="admin_search_orders" class="Vasileuski\AdminSearch\Model\Indexer\Order" group="indexer">
+        <subscriptions>
+            <table name="sales_order" entity_column="entity_id"/>
+        </subscriptions>
+    </view>
+    <view id="admin_search_pages" class="Vasileuski\AdminSearch\Model\Indexer\Page" group="indexer">
+        <subscriptions>
+            <table name="cms_page" entity_column="page_id"/>
+        </subscriptions>
+    </view>
+    <view id="admin_search_products" class="Vasileuski\AdminSearch\Model\Indexer\Product" group="indexer">
+        <subscriptions>
+            <table name="catalog_product_entity" entity_column="entity_id"/>
+            <table name="catalog_product_entity_varchar" entity_column="entity_id"/>
+        </subscriptions>
+    </view>
+</config>

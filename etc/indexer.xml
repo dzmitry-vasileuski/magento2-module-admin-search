@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Indexer/etc/indexer.xsd">
+    <indexer id="admin_search_catalog_price_rules" view_id="admin_search_catalog_price_rules" class="Vasileuski\AdminSearch\Model\Indexer\CatalogPriceRule">
+        <title>Admin Search Catalog Price Rules</title>
+    </indexer>
+    <indexer id="admin_search_cart_price_rules" view_id="admin_search_cart_price_rules" class="Vasileuski\AdminSearch\Model\Indexer\CartPriceRule">
+        <title>Admin Search Cart Price Rules</title>
+    </indexer>
+    <indexer id="admin_search_categories" view_id="admin_search_categories" class="Vasileuski\AdminSearch\Model\Indexer\Category">
+        <title>Admin Search Categories</title>
+    </indexer>
+    <indexer id="admin_search_customers" view_id="admin_search_customers" class="Vasileuski\AdminSearch\Model\Indexer\Customer">
+        <title>Admin Search Customers</title>
+    </indexer>
+    <indexer id="admin_search_orders" view_id="admin_search_orders" class="Vasileuski\AdminSearch\Model\Indexer\Order">
+        <title>Admin Search Orders</title>
+    </indexer>
+    <indexer id="admin_search_pages" view_id="admin_search_pages" class="Vasileuski\AdminSearch\Model\Indexer\Page">
+        <title>Admin Search Pages</title>
+    </indexer>
+    <indexer id="admin_search_products" view_id="admin_search_products" class="Vasileuski\AdminSearch\Model\Indexer\Product">
+        <title>Admin Search Products</title>
+    </indexer>
+</config>

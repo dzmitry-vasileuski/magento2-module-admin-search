@@ -1,0 +1,252 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Vasileuski\AdminSearch\Model\IndexerConfig">
+        <arguments>
+            <argument name="config" xsi:type="array">
+                <item name="admin_search_cart_price_rules" xsi:type="array">
+                    <item name="resource" xsi:type="string">Magento_SalesRule::quote</item>
+                    <item name="type" xsi:type="string">cart-price-rule</item>
+                    <item name="url" xsi:type="array">
+                        <item name="path" xsi:type="string">sales_rule/promo_quote/edit</item>
+                        <item name="param" xsi:type="string">id</item>
+                    </item>
+                    <item name="properties" xsi:type="array">
+                        <item name="cart_price_rule_name" xsi:type="array">
+                            <item name="type" xsi:type="string">text</item>
+                            <item name="analyzer" xsi:type="string">whitespace</item>
+                        </item>
+                        <item name="cart_price_rule_from" xsi:type="array">
+                            <item name="type" xsi:type="string">text</item>
+                            <item name="index" xsi:type="boolean">false</item>
+                        </item>
+                        <item name="cart_price_rule_to" xsi:type="array">
+                            <item name="type" xsi:type="string">text</item>
+                            <item name="index" xsi:type="boolean">false</item>
+                        </item>
+                        <item name="cart_price_is_active" xsi:type="array">
+                            <item name="type" xsi:type="string">integer</item>
+                            <item name="index" xsi:type="boolean">false</item>
+                        </item>
+                    </item>
+                </item>
+                <item name="admin_search_catalog_price_rules" xsi:type="array">
+                    <item name="resource" xsi:type="string">Magento_CatalogRule::promo_catalog</item>
+                    <item name="type" xsi:type="string">catalog-price-rule</item>
+                    <item name="url" xsi:type="array">
+                        <item name="path" xsi:type="string">catalog_rule/promo_catalog/edit</item>
+                        <item name="param" xsi:type="string">id</item>
+                    </item>
+                    <item name="properties" xsi:type="array">
+                        <item name="catalog_price_rule_name" xsi:type="array">
+                            <item name="type" xsi:type="string">text</item>
+                            <item name="analyzer" xsi:type="string">whitespace</item>
+                        </item>
+                        <item name="catalog_price_rule_from" xsi:type="array">
+                            <item name="type" xsi:type="string">text</item>
+                            <item name="index" xsi:type="boolean">false</item>
+                        </item>
+                        <item name="catalog_price_rule_to" xsi:type="array">
+                            <item name="type" xsi:type="string">text</item>
+                            <item name="index" xsi:type="boolean">false</item>
+                        </item>
+                        <item name="catalog_price_is_active" xsi:type="array">
+                            <item name="type" xsi:type="string">integer</item>
+                            <item name="index" xsi:type="boolean">false</item>
+                        </item>
+                    </item>
+                </item>
+                <item name="admin_search_categories" xsi:type="array">
+                    <item name="resource" xsi:type="string">Magento_Catalog::categories</item>
+                    <item name="type" xsi:type="string">category</item>
+                    <item name="url" xsi:type="array">
+                        <item name="path" xsi:type="string">catalog/category/edit</item>
+                        <item name="param" xsi:type="string">id</item>
+                    </item>
+                    <item name="properties" xsi:type="array">
+                        <item name="category_name" xsi:type="array">
+                            <item name="type" xsi:type="string">text</item>
+                            <item name="analyzer" xsi:type="string">whitespace</item>
+                        </item>
+                        <item name="category_path" xsi:type="array">
+                            <item name="type" xsi:type="string">text</item>
+                            <item name="index" xsi:type="boolean">false</item>
+                        </item>
+                    </item>
+                </item>
+                <item name="admin_search_customers" xsi:type="array">
+                    <item name="resource" xsi:type="string">Magento_Customer::manage</item>
+                    <item name="type" xsi:type="string">customer</item>
+                    <item name="url" xsi:type="array">
+                        <item name="path" xsi:type="string">customer/index/edit</item>
+                        <item name="param" xsi:type="string">id</item>
+                    </item>
+                    <item name="properties" xsi:type="array">
+                        <item name="customer_firstname" xsi:type="array">
+                            <item name="type" xsi:type="string">text</item>
+                            <item name="analyzer" xsi:type="string">whitespace</item>
+                        </item>
+                        <item name="customer_lastname" xsi:type="array">
+                            <item name="type" xsi:type="string">text</item>
+                            <item name="analyzer" xsi:type="string">whitespace</item>
+                        </item>
+                        <item name="customer_email" xsi:type="array">
+                            <item name="type" xsi:type="string">text</item>
+                        </item>
+                    </item>
+                </item>
+                <item name="admin_search_orders" xsi:type="array">
+                    <item name="resource" xsi:type="string">Magento_Sales::actions_view</item>
+                    <item name="type" xsi:type="string">order</item>
+                    <item name="url" xsi:type="array">
+                        <item name="path" xsi:type="string">sales/order/view</item>
+                        <item name="param" xsi:type="string">order_id</item>
+                    </item>
+                    <item name="properties" xsi:type="array">
+                        <item name="order_increment_id" xsi:type="array">
+                            <item name="type" xsi:type="string">text</item>
+                            <item name="analyzer" xsi:type="string">whitespace</item>
+                        </item>
+                        <item name="order_customer_firstname" xsi:type="array">
+                            <item name="type" xsi:type="string">text</item>
+                            <item name="analyzer" xsi:type="string">whitespace</item>
+                        </item>
+                        <item name="order_customer_lastname" xsi:type="array">
+                            <item name="type" xsi:type="string">text</item>
+                            <item name="analyzer" xsi:type="string">whitespace</item>
+                        </item>
+                        <item name="order_status" xsi:type="array">
+                            <item name="type" xsi:type="string">text</item>
+                            <item name="index" xsi:type="boolean">false</item>
+                        </item>
+                        <item name="order_created_at" xsi:type="array">
+                            <item name="type" xsi:type="string">text</item>
+                            <item name="index" xsi:type="boolean">false</item>
+                        </item>
+                    </item>
+                </item>
+                <item name="admin_search_pages" xsi:type="array">
+                    <item name="resource" xsi:type="string">Magento_Cms::page</item>
+                    <item name="type" xsi:type="string">page</item>
+                    <item name="url" xsi:type="array">
+                        <item name="path" xsi:type="string">cms/page/edit</item>
+                        <item name="param" xsi:type="string">page_id</item>
+                    </item>
+                    <item name="properties" xsi:type="array">
+                        <item name="page_title" xsi:type="array">
+                            <item name="type" xsi:type="string">text</item>
+                            <item name="analyzer" xsi:type="string">whitespace</item>
+                        </item>
+                        <item name="page_identifier" xsi:type="array">
+                            <item name="type" xsi:type="string">text</item>
+                        </item>
+                        <item name="page_status" xsi:type="array">
+                            <item name="type" xsi:type="string">text</item>
+                            <item name="index" xsi:type="boolean">false</item>
+                        </item>
+                    </item>
+                </item>
+                <item name="admin_search_products" xsi:type="array">
+                    <item name="resource" xsi:type="string">Magento_Catalog::products</item>
+                    <item name="type" xsi:type="string">product</item>
+                    <item name="url" xsi:type="array">
+                        <item name="path" xsi:type="string">catalog/product/edit</item>
+                        <item name="param" xsi:type="string">id</item>
+                    </item>
+                    <item name="properties" xsi:type="array">
+                        <item name="product_name" xsi:type="array">
+                            <item name="type" xsi:type="string">text</item>
+                            <item name="analyzer" xsi:type="string">whitespace</item>
+                        </item>
+                        <item name="product_sku" xsi:type="array">
+                            <item name="type" xsi:type="string">text</item>
+                        </item>
+                        <item name="product_type" xsi:type="array">
+                            <item name="type" xsi:type="string">text</item>
+                            <item name="index" xsi:type="boolean">false</item>
+                        </item>
+                    </item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
+    <virtualType name="Vasileuski\AdminSearch\Observer\CatalogPriceRuleReindex" type="Vasileuski\AdminSearch\Observer\Reindex">
+        <arguments>
+            <argument name="indexerId" xsi:type="const">Vasileuski\AdminSearch\Model\Indexer\CatalogPriceRule::INDEXER_ID</argument>
+            <argument name="fields" xsi:type="array">
+                <item name="name" xsi:type="string">name</item>
+                <item name="from_date" xsi:type="string">from_date</item>
+                <item name="to_date" xsi:type="string">to_date</item>
+                <item name="is_active" xsi:type="string">is_active</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Vasileuski\AdminSearch\Observer\CartPriceRuleReindex" type="Vasileuski\AdminSearch\Observer\Reindex">
+        <arguments>
+            <argument name="indexerId" xsi:type="const">Vasileuski\AdminSearch\Model\Indexer\CartPriceRule::INDEXER_ID</argument>
+            <argument name="fields" xsi:type="array">
+                <item name="name" xsi:type="string">name</item>
+                <item name="from_date" xsi:type="string">from_date</item>
+                <item name="to_date" xsi:type="string">to_date</item>
+                <item name="is_active" xsi:type="string">is_active</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Vasileuski\AdminSearch\Observer\CategoryReindex" type="Vasileuski\AdminSearch\Observer\Reindex">
+        <arguments>
+            <argument name="indexerId" xsi:type="const">Vasileuski\AdminSearch\Model\Indexer\Category::INDEXER_ID</argument>
+            <argument name="fields" xsi:type="array">
+                <item name="name" xsi:type="string">name</item>
+                <item name="path" xsi:type="string">path</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Vasileuski\AdminSearch\Observer\CustomerReindex" type="Vasileuski\AdminSearch\Observer\Reindex">
+        <arguments>
+            <argument name="indexerId" xsi:type="const">Vasileuski\AdminSearch\Model\Indexer\Customer::INDEXER_ID</argument>
+            <argument name="fields" xsi:type="array">
+                <item name="firstname" xsi:type="string">firstname</item>
+                <item name="lastname" xsi:type="string">lastname</item>
+                <item name="email" xsi:type="string">email</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Vasileuski\AdminSearch\Observer\OrderReindex" type="Vasileuski\AdminSearch\Observer\Reindex">
+        <arguments>
+            <argument name="indexerId" xsi:type="const">Vasileuski\AdminSearch\Model\Indexer\Order::INDEXER_ID</argument>
+            <argument name="fields" xsi:type="array">
+                <item name="increment_id" xsi:type="string">increment_id</item>
+                <item name="status" xsi:type="string">status</item>
+                <item name="customer_firstname" xsi:type="string">customer_firstname</item>
+                <item name="customer_lastname" xsi:type="string">customer_lastname</item>
+                <item name="customer_email" xsi:type="string">customer_email</item>
+                <item name="created_at" xsi:type="string">created_at</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Vasileuski\AdminSearch\Observer\PageReindex" type="Vasileuski\AdminSearch\Observer\Reindex">
+        <arguments>
+            <argument name="indexerId" xsi:type="const">Vasileuski\AdminSearch\Model\Indexer\Page::INDEXER_ID</argument>
+            <argument name="fields" xsi:type="array">
+                <item name="title" xsi:type="string">title</item>
+                <item name="identifier" xsi:type="string">identifier</item>
+                <item name="is_active" xsi:type="string">is_active</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Vasileuski\AdminSearch\Observer\ProductReindex" type="Vasileuski\AdminSearch\Observer\Reindex">
+        <arguments>
+            <argument name="indexerId" xsi:type="const">Vasileuski\AdminSearch\Model\Indexer\Product::INDEXER_ID</argument>
+            <argument name="fields" xsi:type="array">
+                <item name="name" xsi:type="string">name</item>
+                <item name="sku" xsi:type="string">sku</item>
+            </argument>
+        </arguments>
+    </virtualType>
+</config>
