@@ -29,7 +29,7 @@ composer require vasileuski/magento2-module-admin-search
 If no results are displayed in the search bar, execute the following CLI command to ensure proper indexing:
 
 ```shell
-bin/magento indexer:reindex
+bin/magento indexer:reindex admin_search_catalog_price_rules admin_search_cart_price_rules admin_search_categories admin_search_customers admin_search_orders admin_search_pages admin_search_products
 ```
 
 ## License 📄
