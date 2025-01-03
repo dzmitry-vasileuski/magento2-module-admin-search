@@ -4,24 +4,19 @@ declare(strict_types=1);
 
 namespace Vasileuski\AdminSearch\Model;
 
-use Magento\AdvancedSearch\Model\Client\ClientInterface;
-use Magento\AdvancedSearch\Model\Client\ClientResolver;
 use Magento\Backend\Model\Auth\Session;
 use Magento\Framework\UrlInterface;
 use Magento\Framework\View\Element\Block\ArgumentInterface;
+use Vasileuski\AdminSearch\Api\ClientInterface;
 
 class Search implements ArgumentInterface
 {
-    private ClientInterface $client;
-
     public function __construct(
         private UrlInterface $url,
         private Session $session,
         private IndexerConfig $indexerConfig,
-        ClientResolver $clientResolver,
-    ) {
-        $this->client = $clientResolver->create();
-    }
+        private ClientInterface $client,
+    ) {}
 
     public function search(string $query): array
     {
@@ -107,7 +102,7 @@ class Search implements ArgumentInterface
             }
         }
 
-        $result = $this->client->query($request);
+        $result = $this->client->search($request);
         $hits = $result['hits']['hits'];
 
         return array_map(function ($hit) {

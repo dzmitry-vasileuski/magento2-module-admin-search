@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Vasileuski\AdminSearch\Model\Indexer;
 
-use Magento\AdvancedSearch\Model\Client\ClientResolver;
 use Magento\Framework\App\ResourceConnection;
 use Magento\Framework\Locale\ResolverInterface;
 use Magento\Framework\Stdlib\DateTime\TimezoneInterface;
 use Magento\Sales\Model\Order\Config;
+use Vasileuski\AdminSearch\Api\ClientInterface;
 use Vasileuski\AdminSearch\Model\Indexer;
 use Vasileuski\AdminSearch\Model\IndexerConfig;
 
@@ -22,14 +22,14 @@ class Order extends Indexer
         TimezoneInterface $timezone,
         ResolverInterface $localeResolver,
         IndexerConfig $indexerConfig,
-        ClientResolver $clientResolver
+        ClientInterface $client
     ) {
         parent::__construct(
             $resource,
             $timezone,
             $localeResolver,
             $indexerConfig,
-            $clientResolver
+            $client
         );
     }
 

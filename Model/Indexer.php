@@ -4,30 +4,25 @@ declare(strict_types=1);
 
 namespace Vasileuski\AdminSearch\Model;
 
-use Magento\AdvancedSearch\Model\Client\ClientInterface;
-use Magento\AdvancedSearch\Model\Client\ClientResolver;
 use Magento\Framework\App\ResourceConnection;
 use Magento\Framework\Indexer\ActionInterface as IndexerActionInterface;
 use Magento\Framework\Locale\ResolverInterface;
 use Magento\Framework\Mview\ActionInterface as MviewActionInterface;
 use Magento\Framework\Stdlib\DateTime\TimezoneInterface;
+use Vasileuski\AdminSearch\Api\ClientInterface;
 
 abstract class Indexer implements MviewActionInterface, IndexerActionInterface
 {
     public const INDEXER_ID = '';
     public const BATCH_SIZE = 5000;
 
-    protected ClientInterface $client;
-
     public function __construct(
         protected ResourceConnection $resource,
         protected TimezoneInterface $timezone,
         protected ResolverInterface $localeResolver,
         protected IndexerConfig $indexerConfig,
-        ClientResolver $clientResolver
-    ) {
-        $this->client = $clientResolver->create($clientResolver->getCurrentEngine());
-    }
+        protected ClientInterface $client
+    ) {}
 
     abstract protected function getDocuments(array $ids, int $page, int $pageSize): array;
     abstract protected function getDocumentsCount(array $ids): int;
@@ -84,7 +79,7 @@ abstract class Indexer implements MviewActionInterface, IndexerActionInterface
             }
 
             if ($bulk['body']) {
-                $this->client->bulkQuery($bulk);
+                $this->client->bulk($bulk);
             }
 
             $page++;
