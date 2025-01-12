@@ -62,7 +62,9 @@ class Category extends Indexer
             $parents = [];
 
             foreach (array_slice(explode('/', $entity['path']), 1) as $categoryId) {
-                $parents[] = $parentEntitiesMap[$categoryId]['name'];
+                if (isset($parentEntities[$categoryId]['name'])) {
+                    $parents[] = $parentEntitiesMap[$categoryId]['name'];
+                }
             }
 
             $documents[$entity['entity_id']] = [
