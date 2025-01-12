@@ -12,6 +12,12 @@ offering a more noticeable and performant solution.
 
 ![Show Case](docs/assets/showcase.gif)
 
+## Benefits 🎉
+
+- ⚡ **Performance**: The module leverages ElasticSearch/OpenSearch for search operations, ensuring fast and efficient results even with large datasets.
+- 👀 **Visibility**: Unlike the default search, the enhanced search is more noticeable and user-friendly, streamlining admin workflows.
+- 🔒 **Access Control**: The module respects Magento ACL permissions, ensuring users only see results they are authorized to access, maintaining security and compliance.
+
 ## Searchable Entities 🔍
 
 - Orders
@@ -22,12 +28,6 @@ offering a more noticeable and performant solution.
 - CMS Blocks
 - Catalog Price Rules
 - Cart Price Rules
-
-## Benefits 🎉
-
-- ⚡ **Performance**: The module leverages ElasticSearch/OpenSearch for search operations, ensuring fast and efficient results even with large datasets.
-- 👀 **Visibility**: Unlike the default search, the enhanced search is more noticeable and user-friendly, streamlining admin workflows.
-- 🔒 **Access Control**: The module respects Magento ACL permissions, ensuring users only see results they are authorized to access, maintaining security and compliance.
 
 ## Installation 🔧
 
