@@ -4,6 +4,7 @@
         <referenceContainer name="after.body.start">
             <block name="header" template="Vasileuski_AdminSearch::header.phtml" before="-">
                 <arguments>
+                    <argument name="config" xsi:type="object">Vasileuski\AdminSearch\Model\Config</argument>
                     <argument name="search" xsi:type="object">Vasileuski\AdminSearch\Model\Search</argument>
                 </arguments>
 

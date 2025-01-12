@@ -14,9 +14,6 @@
 
 & when (@media-common = true) {
     .header {
-        position: fixed;
-        top: 0;
-        left: 0;
         display: grid;
         grid-template-columns: 1fr @search__width 1fr;
         gap: 2rem;
@@ -28,6 +25,12 @@
         padding: 1rem 1rem 1rem 9.8rem;
         z-index: @header__z-index;
         height: 6rem;
+
+        &._sticky {
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
 
         &__right {
             display: flex;
@@ -107,6 +110,7 @@
             position: absolute;
             bottom: -.5rem;
             left: 0;
+            z-index: @z-index-7;
             transform: translateY(100%);
             padding: 1rem;
             background: @color-white;
@@ -170,10 +174,6 @@
         }
     }
 
-    .page-wrapper {
-        margin-top: 6rem !important;
-    }
-
     .menu-wrapper .logo {
         height: 6rem !important;
 
@@ -182,7 +182,13 @@
         }
     }
 
-    .page-main-actions .page-actions._fixed {
-        top: 6rem !important;
+    body:has(.header._sticky) {
+        .page-wrapper {
+            margin-top: 6rem !important;
+        }
+
+        .page-main-actions .page-actions._fixed {
+            top: 6rem !important;
+        }
     }
 }

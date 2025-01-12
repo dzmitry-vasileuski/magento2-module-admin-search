@@ -4,11 +4,13 @@
  * @var \Magento\Framework\Escaper $escaper
  */
 
+/** @var \Vasileuski\AdminSearch\Model\Config $config */
+$config = $block->getConfig();
 /** @var \Vasileuski\AdminSearch\Model\Search $search */
 $search = $block->getSearch();
 ?>
 
-<header class="header">
+<header class="header <?= $config->isStickyHeaderEnabled() ? '_sticky' : '' ?>">
     <div class="header__left">
         <?= $block->getChildHtml('header.left') ?>
     </div>

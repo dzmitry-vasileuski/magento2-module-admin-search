@@ -10,7 +10,18 @@ The Magento 2 Admin Search Module enhances the global search functionality in th
 and efficient searches through the main entities. It addresses the limitations of the default Magento global search, 
 offering a more noticeable and performant solution.
 
-![Show Case](showcase.gif)
+![Show Case](docs/assets/showcase.gif)
+
+## Searchable Entities 🔍
+
+- Orders
+- Customers
+- Products
+- Categories
+- CMS Pages
+- CMS Blocks
+- Catalog Price Rules
+- Cart Price Rules
 
 ## Benefits 🎉
 
@@ -23,6 +34,14 @@ offering a more noticeable and performant solution.
 ```shell
 composer require vasileuski/magento2-module-admin-search
 ```
+
+## Configuration ⚙️
+
+The module settings can be found in the Magento admin panel under the following path:  
+**Stores → Configuration → Advanced → Admin → Admin Search**
+
+Available Options:
+- **Sticky Header**: Customers can toggle the sticky header feature.
 
 ## Troubleshooting 🛠️
 

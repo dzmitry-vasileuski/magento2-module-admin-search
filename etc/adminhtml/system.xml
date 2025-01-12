@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="admin">
+            <group id="search" translate="label" sortOrder="1000" showInDefault="1">
+                <label>Admin Search</label>
+
+                <field id="sticky_header" type="select" translate="label" sortOrder="10" showInDefault="1">
+                    <label>Sticky Header</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
