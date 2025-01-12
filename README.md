@@ -1,7 +1,7 @@
 # Magento 2 Admin Search Module
 
 ![Magento](https://img.shields.io/badge/magento-2.4.x-blue)
-![Version](https://img.shields.io/badge/version-1.1.0-blue)
+![Version](https://img.shields.io/badge/version-1.2.0-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
 ## Overview 🚀
