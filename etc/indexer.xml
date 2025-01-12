@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Indexer/etc/indexer.xsd">
+    <indexer id="admin_search_blocks" view_id="admin_search_blocks" class="Vasileuski\AdminSearch\Model\Indexer\Block">
+        <title>Admin Search Blocks</title>
+    </indexer>
     <indexer id="admin_search_catalog_price_rules" view_id="admin_search_catalog_price_rules" class="Vasileuski\AdminSearch\Model\Indexer\CatalogPriceRule">
         <title>Admin Search Catalog Price Rules</title>
     </indexer>

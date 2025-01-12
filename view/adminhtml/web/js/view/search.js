@@ -23,6 +23,7 @@ define([
                 hit: '.search__hit',
             },
             templates: {
+                block: 'Vasileuski_AdminSearch/hit/block',
                 'cart-price-rule': 'Vasileuski_AdminSearch/hit/cart-price-rule',
                 'catalog-price-rule': 'Vasileuski_AdminSearch/hit/catalog-price-rule',
                 category: 'Vasileuski_AdminSearch/hit/category',

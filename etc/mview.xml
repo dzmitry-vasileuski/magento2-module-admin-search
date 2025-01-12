@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Mview/etc/mview.xsd">
+    <view id="admin_search_blocks" class="Vasileuski\AdminSearch\Model\Indexer\Block" group="indexer">
+        <subscriptions>
+            <table name="cms_block" entity_column="block_id"/>
+        </subscriptions>
+    </view>
     <view id="admin_search_catalog_price_rules" class="Vasileuski\AdminSearch\Model\Indexer\CatalogPriceRule" group="indexer">
         <subscriptions>
             <table name="catalogrule" entity_column="rule_id"/>

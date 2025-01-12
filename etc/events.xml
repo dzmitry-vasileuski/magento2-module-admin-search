@@ -30,6 +30,12 @@
     <event name="sales_order_delete_commit_after">
         <observer name="admin_search_reindex" instance="Vasileuski\AdminSearch\Observer\OrderReindex"/>
     </event>
+    <event name="cms_block_save_commit_after">
+        <observer name="admin_search_reindex" instance="Vasileuski\AdminSearch\Observer\BlockReindex"/>
+    </event>
+    <event name="cms_block_delete_commit_after">
+        <observer name="admin_search_reindex" instance="Vasileuski\AdminSearch\Observer\BlockReindex"/>
+    </event>
     <event name="cms_page_save_commit_after">
         <observer name="admin_search_reindex" instance="Vasileuski\AdminSearch\Observer\PageReindex"/>
     </event>

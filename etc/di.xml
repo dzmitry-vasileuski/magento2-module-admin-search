@@ -5,6 +5,27 @@
     <type name="Vasileuski\AdminSearch\Model\IndexerConfig">
         <arguments>
             <argument name="config" xsi:type="array">
+                <item name="admin_search_blocks" xsi:type="array">
+                    <item name="resource" xsi:type="string">Magento_Cms::block</item>
+                    <item name="type" xsi:type="string">block</item>
+                    <item name="url" xsi:type="array">
+                        <item name="path" xsi:type="string">cms/block/edit</item>
+                        <item name="param" xsi:type="string">block_id</item>
+                    </item>
+                    <item name="properties" xsi:type="array">
+                        <item name="block_title" xsi:type="array">
+                            <item name="type" xsi:type="string">text</item>
+                            <item name="analyzer" xsi:type="string">whitespace</item>
+                        </item>
+                        <item name="block_identifier" xsi:type="array">
+                            <item name="type" xsi:type="string">text</item>
+                        </item>
+                        <item name="block_status" xsi:type="array">
+                            <item name="type" xsi:type="string">text</item>
+                            <item name="index" xsi:type="boolean">false</item>
+                        </item>
+                    </item>
+                </item>
                 <item name="admin_search_cart_price_rules" xsi:type="array">
                     <item name="resource" xsi:type="string">Magento_SalesRule::quote</item>
                     <item name="type" xsi:type="string">cart-price-rule</item>
@@ -171,6 +192,17 @@
             </argument>
         </arguments>
     </type>
+
+    <virtualType name="Vasileuski\AdminSearch\Observer\BlockReindex" type="Vasileuski\AdminSearch\Observer\Reindex">
+        <arguments>
+            <argument name="indexerId" xsi:type="const">Vasileuski\AdminSearch\Model\Indexer\Block::INDEXER_ID</argument>
+            <argument name="fields" xsi:type="array">
+                <item name="title" xsi:type="string">title</item>
+                <item name="identifier" xsi:type="string">identifier</item>
+                <item name="is_active" xsi:type="string">is_active</item>
+            </argument>
+        </arguments>
+    </virtualType>
 
     <virtualType name="Vasileuski\AdminSearch\Observer\CatalogPriceRuleReindex" type="Vasileuski\AdminSearch\Observer\Reindex">
         <arguments>
