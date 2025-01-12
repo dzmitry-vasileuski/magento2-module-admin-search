@@ -1,7 +1,7 @@
 {
     "name": "vasileuski/magento2-module-admin-search",
     "type": "magento2-module",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "description": "Magento 2 module that enhances the admin panel's global search by enabling fast and efficient searches through main entities with improved visibility and ACL support.",
     "keywords": ["magento", "magento2", "admin", "search"],
     "minimum-stability": "stable",
