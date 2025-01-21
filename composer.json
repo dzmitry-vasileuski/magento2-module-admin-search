@@ -1,16 +1,15 @@
 {
     "name": "vasileuski/magento2-module-admin-search",
+    "description": "Magento 2 module that enhances the admin panel's global search by enabling fast and efficient searches through main entities with improved visibility and ACL support.",
+    "license": "MIT",
     "type": "magento2-module",
     "version": "1.2.0",
-    "description": "Magento 2 module that enhances the admin panel's global search by enabling fast and efficient searches through main entities with improved visibility and ACL support.",
     "keywords": [
         "magento",
         "magento2",
         "admin",
         "search"
     ],
-    "minimum-stability": "stable",
-    "license": "MIT",
     "authors": [
         {
             "name": "Dzmitry Vasileuski",
@@ -18,17 +17,17 @@
         }
     ],
     "require": {
-        "php": "~8.1.0||~8.2.0||~8.3.0",
+        "php": "~8.1.0 || ~8.2.0 || ~8.3.0",
         "ext-intl": "*",
-        "magento/module-catalog": "104.0.*",
-        "magento/module-catalog-rule": "101.2.*",
-        "magento/module-cms": "104.0.*",
-        "magento/module-customer": "103.0.*",
-        "magento/module-elasticsearch": "101.0.*",
-        "magento/module-sales": "103.0.*",
-        "magento/module-sales-rule": "101.2.*",
-        "magento/module-store": "101.1.*",
-        "magento/framework": "103.0.*"
+        "magento/framework": "~103.0.0",
+        "magento/module-catalog": "~104.0.0",
+        "magento/module-catalog-rule": "~101.2.0",
+        "magento/module-cms": "~104.0.0",
+        "magento/module-customer": "~103.0.0",
+        "magento/module-elasticsearch": "~101.0.0",
+        "magento/module-sales": "~103.0.0",
+        "magento/module-sales-rule": "~101.2.0",
+        "magento/module-store": "~101.1.0"
     },
     "require-dev": {
         "captainhook/captainhook": "^5.18",
@@ -36,26 +35,27 @@
         "ergebnis/license": "^2.6",
         "friendsofphp/php-cs-fixer": "^3.67",
         "kubawerlos/php-cs-fixer-custom-fixers": "^3.22",
+        "laminas/laminas-coding-standard": "^3.0",
         "phpstan/extension-installer": "^1.4",
         "phpstan/phpstan": "^1.12",
         "phpunit/phpunit": "^9.6",
-        "squizlabs/php_codesniffer": "^3.11",
-        "laminas/laminas-coding-standard": "^3.0"
+        "squizlabs/php_codesniffer": "^3.11"
     },
+    "minimum-stability": "stable",
     "autoload": {
-        "files": [
-            "src/registration.php"
-        ],
         "psr-4": {
             "Vasileuski\\AdminSearch\\": "src/"
-        }
+        },
+        "files": [
+            "src/registration.php"
+        ]
     },
     "config": {
         "allow-plugins": {
-            "php-http/discovery": true,
-            "ergebnis/composer-normalize": true,
             "dealerdirect/phpcodesniffer-composer-installer": true,
+            "ergebnis/composer-normalize": true,
             "magento/composer-dependency-version-audit-plugin": true,
+            "php-http/discovery": true,
             "phpstan/extension-installer": true
         },
         "optimize-autoloader": true,
