@@ -1,0 +1,17 @@
+{
+    "files.associations": {
+        "*.xml.dist": "xml",
+    },
+    "explorer.fileNesting.enabled": true,
+    "explorer.fileNesting.patterns": {
+        "composer.json": "composer.*,auth.json*,.php-cs*,phpcs*,captainhook.json,phpunit.*,phpstan.*",
+        ".env": ".env.*,.git*,*.ini, *.sample,.htaccess,.editorconfig,env.*",
+        ".env.example": ".env.*,.git*,*.ini, *.sample,.htaccess,.editorconfig",
+        "README.md": "*.md, COPYING.txt, LICENSE*",
+        "package.json": "package*.json, Gruntfile.js*"
+    },
+    "workbench.tree.indent": 25,
+    "workbench.tree.renderIndentGuides": "always",
+    "editor.folding": true,
+    "editor.foldingStrategy": "auto"
+}
