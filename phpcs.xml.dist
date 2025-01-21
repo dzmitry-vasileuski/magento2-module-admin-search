@@ -12,5 +12,18 @@
 
     <exclude-pattern>vendor/*</exclude-pattern>
 
-    <rule ref="vendor/farmbits-ecommerce/coding-standard/src/CodingStandard/ruleset.xml" />
+    <rule ref="LaminasCodingStandard" />
+    <rule ref="PSR12">
+        <exclude name="PSR12.Files.FileHeader.IncorrectOrder" />
+        <exclude name="PSR2.Methods.MethodDeclaration.Underscore" />
+    </rule>
+    <rule ref="Generic.Files.LineLength.TooLong">
+        <exclude-pattern>*/*.phtml</exclude-pattern>
+    </rule>
+    <rule ref="Generic.Files.InlineHTML.Found">
+        <exclude-pattern>*/*.phtml</exclude-pattern>
+    </rule>
+    <rule ref="SlevomatCodingStandard.Commenting.InlineDocCommentDeclaration.MissingVariable">
+        <exclude-pattern>*/*.phtml</exclude-pattern>
+    </rule>
 </ruleset>
