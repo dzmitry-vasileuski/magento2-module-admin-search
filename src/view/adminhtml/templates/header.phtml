@@ -1,12 +1,18 @@
 <?php
-/**
- * @var \Magento\Framework\View\Element\Template $block
- * @var \Magento\Framework\Escaper $escaper
- */
 
-/** @var \Vasileuski\AdminSearch\Model\Config $config */
+declare(strict_types=1);
+
+use Magento\Framework\View\Element\Template;
+/**
+ * @var Template $block
+ * @var Escaper $escaper
+ */
+use Vasileuski\AdminSearch\Model\Config;
+use Vasileuski\AdminSearch\Model\Search;
+
+/** @var Config $config */
 $config = $block->getConfig();
-/** @var \Vasileuski\AdminSearch\Model\Search $search */
+/** @var Search $search */
 $search = $block->getSearch();
 ?>
 
@@ -15,7 +21,7 @@ $search = $block->getSearch();
         <?= $block->getChildHtml('header.left') ?>
     </div>
     <div class="header__middle" data-bind="scope: 'search'">
-        <?php if ($search->getAllowedIndices()): ?>
+        <?php if ($search->getAllowedIndices()) : ?>
         <div class="search _placeholder">
             <div class="search__icon">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="#000000" fill="none">
@@ -39,7 +45,7 @@ $search = $block->getSearch();
     </div>
 </header>
 
-<?php if ($search->getAllowedIndices()): ?>
+<?php if ($search->getAllowedIndices()) : ?>
 <script type="text/x-magento-init">
     {
         "*": {

@@ -2,12 +2,25 @@
 
 declare(strict_types=1);
 
+/**
+ * Copyright (c) 2024-2025 Dzmitry Vasileuski
+ *
+ * For the full copyright and license information, please view
+ * the LICENSE file that was distributed with this source code.
+ *
+ * @see https://github.com/dzmitry-vasileuski/magento2-module-admin-search
+ */
+
 namespace Vasileuski\AdminSearch\Model;
 
 use Magento\Backend\Model\Auth\Session;
 use Magento\Framework\UrlInterface;
 use Magento\Framework\View\Element\Block\ArgumentInterface;
 use Vasileuski\AdminSearch\Api\ClientInterface;
+
+use function array_filter;
+use function array_map;
+use function implode;
 
 class Search implements ArgumentInterface
 {
@@ -16,30 +29,29 @@ class Search implements ArgumentInterface
         private Session $session,
         private IndexerConfig $indexerConfig,
         private ClientInterface $client,
-    ) {}
+    ) {
+    }
 
     public function search(string $query): array
     {
         $allowedIndices = $this->getAllowedIndices();
 
-        if (!$allowedIndices) {
+        if (! $allowedIndices) {
             return [];
         }
 
         $request = [
             'index' => implode(',', $allowedIndices),
-            'body' => [
+            'body'  => [
                 'query' => [
                     'bool' => [
-                        'should' => [
-
-                        ],
+                        'should'               => [],
                         'minimum_should_match' => 1,
                     ],
                 ],
-                'sort' => [
+                'sort'  => [
                     '_score' => 'desc',
-                    '_id' => 'desc',
+                    '_id'    => 'desc',
                 ],
             ],
         ];
@@ -62,21 +74,21 @@ class Search implements ArgumentInterface
                     ],
                 ];
 
-                $request['body']['query']['bool']['should'][] =[
+                $request['body']['query']['bool']['should'][] = [
                     'match' => [
                         $property => [
-                            'query' => $query,
-                            'boost' => 4,
+                            'query'    => $query,
+                            'boost'    => 4,
                             'operator' => 'or',
                         ],
                     ],
                 ];
 
-                $request['body']['query']['bool']['should'][] =[
+                $request['body']['query']['bool']['should'][] = [
                     'match' => [
                         $property => [
-                            'query' => $query,
-                            'boost' => 6,
+                            'query'    => $query,
+                            'boost'    => 6,
                             'operator' => 'and',
                         ],
                     ],
@@ -96,21 +108,21 @@ class Search implements ArgumentInterface
                         $property => [
                             'query' => $query,
                             'boost' => 10,
-                        ]
-                    ]
+                        ],
+                    ],
                 ];
             }
         }
 
         $result = $this->client->search($request);
-        $hits = $result['hits']['hits'];
+        $hits   = $result['hits']['hits'];
 
         return array_map(function ($hit) {
             $type = $this->indexerConfig->get($hit['_index'], 'type');
-            $url = $this->indexerConfig->get($hit['_index'], 'url');
+            $url  = $this->indexerConfig->get($hit['_index'], 'url');
 
             $hit['_source']['_type'] = $type;
-            $hit['_source']['_url'] = $this->url->getUrl($url['path'], [$url['param'] => $hit['_id']]);
+            $hit['_source']['_url']  = $this->url->getUrl($url['path'], [$url['param'] => $hit['_id']]);
 
             return $hit['_source'];
         }, $hits);
@@ -120,7 +132,7 @@ class Search implements ArgumentInterface
     {
         $allowedIndices = [];
 
-        if (!$this->session->isAllowed('Magento_Backend::global_search')) {
+        if (! $this->session->isAllowed('Magento_Backend::global_search')) {
             return $allowedIndices;
         }
 

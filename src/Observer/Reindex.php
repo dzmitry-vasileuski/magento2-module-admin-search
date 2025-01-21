@@ -2,6 +2,15 @@
 
 declare(strict_types=1);
 
+/**
+ * Copyright (c) 2024-2025 Dzmitry Vasileuski
+ *
+ * For the full copyright and license information, please view
+ * the LICENSE file that was distributed with this source code.
+ *
+ * @see https://github.com/dzmitry-vasileuski/magento2-module-admin-search
+ */
+
 namespace Vasileuski\AdminSearch\Observer;
 
 use Magento\Framework\Event\Observer;
@@ -14,7 +23,8 @@ class Reindex implements ObserverInterface
         private IndexerRegistry $indexerRegistry,
         private string $indexerId,
         private array $fields = [],
-    ) {}
+    ) {
+    }
 
     public function execute(Observer $observer): void
     {
@@ -24,7 +34,7 @@ class Reindex implements ObserverInterface
             return;
         }
 
-        $object = $observer->getDataObject();
+        $object     = $observer->getDataObject();
         $hasChanges = false;
 
         foreach ($this->fields as $field) {

@@ -2,6 +2,15 @@
 
 declare(strict_types=1);
 
+/**
+ * Copyright (c) 2024-2025 Dzmitry Vasileuski
+ *
+ * For the full copyright and license information, please view
+ * the LICENSE file that was distributed with this source code.
+ *
+ * @see https://github.com/dzmitry-vasileuski/magento2-module-admin-search
+ */
+
 namespace Vasileuski\AdminSearch\Model\Indexer;
 
 use Magento\Framework\App\ResourceConnection;
@@ -9,10 +18,11 @@ use Magento\Framework\Locale\ResolverInterface;
 use Magento\Framework\Stdlib\DateTime\TimezoneInterface;
 use Magento\Sales\Model\Order\Config;
 use Vasileuski\AdminSearch\Api\ClientInterface;
-use Vasileuski\AdminSearch\Model\Indexer;
+use Vasileuski\AdminSearch\Model\AbstractIndexer;
 use Vasileuski\AdminSearch\Model\IndexerConfig;
+use Zend_Db_Expr;
 
-class Order extends Indexer
+class Order extends AbstractIndexer
 {
     public const INDEXER_ID = 'admin_search_orders';
 
@@ -36,7 +46,7 @@ class Order extends Indexer
     protected function getDocuments(array $ids, int $page, int $pageSize): array
     {
         $connection = $this->resource->getConnection();
-        $select = $connection->select();
+        $select     = $connection->select();
 
         $select->from(
             $this->resource->getTableName('sales_order'),
@@ -59,18 +69,18 @@ class Order extends Indexer
 
         $select->limitPage($page, $pageSize);
 
-        $entities = $connection->fetchAll($select);
-        $statuses = $this->orderConfig->getStatuses();
+        $entities  = $connection->fetchAll($select);
+        $statuses  = $this->orderConfig->getStatuses();
         $documents = [];
 
         foreach ($entities as $entity) {
             $documents[$entity['entity_id']] = [
-                'order_increment_id' => $entity['increment_id'],
-                'order_status' => $statuses[$entity['status']] ?? null,
+                'order_increment_id'       => $entity['increment_id'],
+                'order_status'             => $statuses[$entity['status']] ?? null,
                 'order_customer_firstname' => $entity['customer_firstname'],
-                'order_customer_lastname' => $entity['customer_lastname'],
-                'order_customer_email' => $entity['customer_email'],
-                'order_created_at' => $this->getFormattedDate($entity['created_at'], 'UTC'),
+                'order_customer_lastname'  => $entity['customer_lastname'],
+                'order_customer_email'     => $entity['customer_email'],
+                'order_created_at'         => $this->getFormattedDate($entity['created_at'], 'UTC'),
             ];
         }
 
@@ -80,11 +90,11 @@ class Order extends Indexer
     protected function getDocumentsCount(array $ids): int
     {
         $connection = $this->resource->getConnection();
-        $select = $connection->select();
+        $select     = $connection->select();
 
         $select->from(
             $this->resource->getTableName('sales_order'),
-            ['count' => new \Zend_Db_Expr('COUNT(*)')]
+            ['count' => new Zend_Db_Expr('COUNT(*)')]
         );
 
         if ($ids) {

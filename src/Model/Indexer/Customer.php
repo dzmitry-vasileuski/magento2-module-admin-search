@@ -2,18 +2,28 @@
 
 declare(strict_types=1);
 
+/**
+ * Copyright (c) 2024-2025 Dzmitry Vasileuski
+ *
+ * For the full copyright and license information, please view
+ * the LICENSE file that was distributed with this source code.
+ *
+ * @see https://github.com/dzmitry-vasileuski/magento2-module-admin-search
+ */
+
 namespace Vasileuski\AdminSearch\Model\Indexer;
 
-use Vasileuski\AdminSearch\Model\Indexer;
+use Vasileuski\AdminSearch\Model\AbstractIndexer;
+use Zend_Db_Expr;
 
-class Customer extends Indexer
+class Customer extends AbstractIndexer
 {
     public const INDEXER_ID = 'admin_search_customers';
 
     protected function getDocuments(array $ids, int $page, int $pageSize): array
     {
         $connection = $this->resource->getConnection();
-        $select = $connection->select();
+        $select     = $connection->select();
 
         $select->from(
             $this->resource->getTableName('customer_entity'),
@@ -31,14 +41,14 @@ class Customer extends Indexer
 
         $select->limitPage($page, $pageSize);
 
-        $entities = $connection->fetchAll($select);
+        $entities  = $connection->fetchAll($select);
         $documents = [];
 
         foreach ($entities as $entity) {
             $documents[$entity['entity_id']] = [
-                'customer_email' => $entity['email'],
+                'customer_email'     => $entity['email'],
                 'customer_firstname' => $entity['firstname'],
-                'customer_lastname' => $entity['lastname'],
+                'customer_lastname'  => $entity['lastname'],
             ];
         }
 
@@ -48,11 +58,11 @@ class Customer extends Indexer
     protected function getDocumentsCount(array $ids): int
     {
         $connection = $this->resource->getConnection();
-        $select = $connection->select();
+        $select     = $connection->select();
 
         $select->from(
             $this->resource->getTableName('customer_entity'),
-            ['count' => new \Zend_Db_Expr('COUNT(*)')]
+            ['count' => new Zend_Db_Expr('COUNT(*)')]
         );
 
         if ($ids) {

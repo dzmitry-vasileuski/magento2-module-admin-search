@@ -2,6 +2,15 @@
 
 declare(strict_types=1);
 
+/**
+ * Copyright (c) 2024-2025 Dzmitry Vasileuski
+ *
+ * For the full copyright and license information, please view
+ * the LICENSE file that was distributed with this source code.
+ *
+ * @see https://github.com/dzmitry-vasileuski/magento2-module-admin-search
+ */
+
 namespace Vasileuski\AdminSearch\Model\Indexer;
 
 use Magento\Catalog\Model\Product as ProductModel;
@@ -11,10 +20,14 @@ use Magento\Framework\Locale\ResolverInterface;
 use Magento\Framework\Stdlib\DateTime\TimezoneInterface;
 use Magento\Store\Model\StoreManagerInterface;
 use Vasileuski\AdminSearch\Api\ClientInterface;
-use Vasileuski\AdminSearch\Model\Indexer;
+use Vasileuski\AdminSearch\Model\AbstractIndexer;
 use Vasileuski\AdminSearch\Model\IndexerConfig;
+use Zend_Db_Expr;
 
-class Product extends Indexer
+use function __;
+use function ucfirst;
+
+class Product extends AbstractIndexer
 {
     public const INDEXER_ID = 'admin_search_products';
 
@@ -39,7 +52,7 @@ class Product extends Indexer
     protected function getDocuments(array $ids, int $page, int $pageSize): array
     {
         $connection = $this->resource->getConnection();
-        $select = $connection->select();
+        $select     = $connection->select();
 
         $select->from(
             ['p' => $this->resource->getTableName('catalog_product_entity')],
@@ -59,7 +72,7 @@ class Product extends Indexer
         );
 
         $entityTypeId = $this->eavConfig->getEntityType(ProductModel::ENTITY)->getId();
-        $storeId = $this->storeManager->getStore('admin')->getId();
+        $storeId      = $this->storeManager->getStore('admin')->getId();
 
         $select->where('pv.store_id = ?', $storeId);
         $select->where('a.attribute_code = ?', 'name');
@@ -71,13 +84,13 @@ class Product extends Indexer
 
         $select->limitPage($page, $pageSize);
 
-        $entities = $connection->fetchAll($select);
+        $entities  = $connection->fetchAll($select);
         $documents = [];
 
         foreach ($entities as $entity) {
             $documents[$entity['entity_id']] = [
                 'product_name' => $entity['name'],
-                'product_sku' => $entity['sku'],
+                'product_sku'  => $entity['sku'],
                 'product_type' => __(ucfirst($entity['type_id'])),
             ];
         }
@@ -88,11 +101,11 @@ class Product extends Indexer
     protected function getDocumentsCount(array $ids): int
     {
         $connection = $this->resource->getConnection();
-        $select = $connection->select();
+        $select     = $connection->select();
 
         $select->from(
             ['p' => $this->resource->getTableName('catalog_product_entity')],
-            ['count' => new \Zend_Db_Expr('COUNT(*)')]
+            ['count' => new Zend_Db_Expr('COUNT(*)')]
         );
 
         if ($ids) {

@@ -2,6 +2,15 @@
 
 declare(strict_types=1);
 
+/**
+ * Copyright (c) 2024-2025 Dzmitry Vasileuski
+ *
+ * For the full copyright and license information, please view
+ * the LICENSE file that was distributed with this source code.
+ *
+ * @see https://github.com/dzmitry-vasileuski/magento2-module-admin-search
+ */
+
 namespace Vasileuski\AdminSearch\Model\Indexer;
 
 use Magento\Catalog\Model\Category as CategoryModel;
@@ -11,10 +20,19 @@ use Magento\Framework\Locale\ResolverInterface;
 use Magento\Framework\Stdlib\DateTime\TimezoneInterface;
 use Magento\Store\Model\StoreManagerInterface;
 use Vasileuski\AdminSearch\Api\ClientInterface;
-use Vasileuski\AdminSearch\Model\Indexer;
+use Vasileuski\AdminSearch\Model\AbstractIndexer;
 use Vasileuski\AdminSearch\Model\IndexerConfig;
+use Zend_Db_Expr;
 
-class Category extends Indexer
+use function array_column;
+use function array_combine;
+use function array_merge;
+use function array_slice;
+use function array_unique;
+use function explode;
+use function implode;
+
+class Category extends AbstractIndexer
 {
     public const INDEXER_ID = 'admin_search_categories';
 
@@ -79,7 +97,7 @@ class Category extends Indexer
     private function getCategories(array $ids, ?int $page = null, ?int $pageSize = null): array
     {
         $connection = $this->resource->getConnection();
-        $select = $connection->select();
+        $select     = $connection->select();
 
         $select->from(
             ['c' => $this->resource->getTableName('catalog_category_entity')],
@@ -99,7 +117,7 @@ class Category extends Indexer
         );
 
         $entityTypeId = $this->eavConfig->getEntityType(CategoryModel::ENTITY)->getId();
-        $storeId = $this->storeManager->getStore('admin')->getId();
+        $storeId      = $this->storeManager->getStore('admin')->getId();
 
         $select->where('cv.store_id = ?', $storeId);
         $select->where('a.attribute_code = ?', 'name');
@@ -119,11 +137,11 @@ class Category extends Indexer
     protected function getDocumentsCount(array $ids): int
     {
         $connection = $this->resource->getConnection();
-        $select = $connection->select();
+        $select     = $connection->select();
 
         $select->from(
             ['c' => $this->resource->getTableName('catalog_category_entity')],
-            ['count' => new \Zend_Db_Expr('COUNT(*)')]
+            ['count' => new Zend_Db_Expr('COUNT(*)')]
         );
 
         if ($ids) {
