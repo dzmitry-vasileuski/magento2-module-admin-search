@@ -1,0 +1,13 @@
+{
+    "pre-commit": {
+        "enabled": true,
+        "actions": [
+            {
+                "action": "composer cs"
+            },
+            {
+                "action": "composer test"
+            }
+        ]
+    }
+}

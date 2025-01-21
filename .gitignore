@@ -1,0 +1,38 @@
+# Environment files
+/.env
+/.env.local
+/.env.*.local
+
+# Binaries
+/bin/*
+!/bin/.gitkeep
+
+# Directories
+/var/
+/vendor/
+/.idea
+/.fleet
+
+# PHP Code Sniffer
+/.phpcs-cache
+/phpcs.xml
+
+# Churn cache
+/.churn.cache
+
+# PHP CS Fixer
+/.php-cs-fixer.php
+/.php-cs-fixer.dist.php
+/.php-cs-fixer.cache
+
+# PHPUnit
+/phpunit.xml
+/.phpunit.result.cache
+/.phpunit.cache
+
+# Composer
+/vendor
+/composer.lock
+
+# PHPStan
+/phpstan.neon
