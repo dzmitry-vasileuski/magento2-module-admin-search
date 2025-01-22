@@ -10,11 +10,11 @@ $config = $block->getConfig();
 $search = $block->getSearch();
 ?>
 
-<header class="header <?= $config->isStickyHeaderEnabled() ? '_sticky' : '' ?>">
-    <div class="header__left">
-        <?= $block->getChildHtml('header.left') ?>
+<section class="searchbar <?= $config->isStickyHeaderEnabled() ? '_sticky' : '' ?>">
+    <div class="searchbar__left">
+        <?= $block->getChildHtml('searchbar.left') ?>
     </div>
-    <div class="header__middle" data-bind="scope: 'search'">
+    <div class="searchbar__middle" data-bind="scope: 'search'">
         <?php if ($search->getAllowedIndices()): ?>
         <div class="search _placeholder">
             <div class="search__icon">
@@ -34,10 +34,10 @@ $search = $block->getSearch();
         <!--ko template: getTemplate() --><!-- /ko -->
         <?php endif ?>
     </div>
-    <div class="header__right">
-        <?= $block->getChildHtml('header.right') ?>
+    <div class="searchbar__right">
+        <?= $block->getChildHtml('searchbar.right') ?>
     </div>
-</header>
+</section>
 
 <?php if ($search->getAllowedIndices()): ?>
 <script type="text/x-magento-init">

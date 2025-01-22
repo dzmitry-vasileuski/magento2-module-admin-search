@@ -1,15 +1,15 @@
 <?xml version="1.0"?>
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
-        <referenceContainer name="after.body.start">
-            <block name="header" template="Vasileuski_AdminSearch::header.phtml" before="-">
+        <referenceContainer name="root">
+            <block name="searchbar" template="Vasileuski_AdminSearch::searchbar.phtml" before="-">
                 <arguments>
                     <argument name="config" xsi:type="object">Vasileuski\AdminSearch\Model\Config</argument>
                     <argument name="search" xsi:type="object">Vasileuski\AdminSearch\Model\Search</argument>
                 </arguments>
 
-                <container name="header.left"/>
-                <container name="header.right">
+                <container name="searchbar.left"/>
+                <container name="searchbar.right">
                     <block class="Magento\AdminNotification\Block\ToolbarEntry" name="header.notification.messages" aclResource="Magento_AdminNotification::show_toolbar" template="Magento_AdminNotification::toolbar_entry.phtml"/>
                     <block class="Magento\Backend\Block\Page\Header" name="header.user" after="-">
                         <arguments>
