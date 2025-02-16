@@ -10,12 +10,26 @@ use Magento\Framework\Indexer\IndexerRegistry;
 
 class Reindex implements ObserverInterface
 {
+    /**
+     * @param IndexerRegistry $indexerRegistry
+     * @param string $indexerId
+     * @param array $fields
+     */
     public function __construct(
         private IndexerRegistry $indexerRegistry,
         private string $indexerId,
         private array $fields = [],
-    ) {}
+    ) {
+        //
+    }
 
+    /**
+     * Reindex the specified index row when an object is saved or deleted.
+     *
+     * @param Observer $observer
+     *
+     * @return void
+     */
     public function execute(Observer $observer): void
     {
         $indexer = $this->indexerRegistry->get($this->indexerId);

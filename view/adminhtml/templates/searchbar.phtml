@@ -1,12 +1,20 @@
 <?php
+
+// phpcs:disable Generic.Files.LineLength
+
+use Magento\Framework\Escaper;
+use Magento\Framework\View\Element\Template;
+use Vasileuski\AdminSearch\Model\Config;
+use Vasileuski\AdminSearch\Model\Search;
+
 /**
- * @var \Magento\Framework\View\Element\Template $block
- * @var \Magento\Framework\Escaper $escaper
+ * @var Template $block
+ * @var Escaper $escaper
  */
 
-/** @var \Vasileuski\AdminSearch\Model\Config $config */
+/** @var Config $config */
 $config = $block->getConfig();
-/** @var \Vasileuski\AdminSearch\Model\Search $search */
+/** @var Search $search */
 $search = $block->getSearch();
 ?>
 
@@ -48,7 +56,7 @@ $search = $block->getSearch();
                     "search": {
                         "component": "Vasileuski_AdminSearch/js/view/search",
                         "config": {
-                            "searchUrl": "<?= $block->getUrl('search') ?>"
+                            "searchUrl": "<?= /* @noEscape */ $block->getUrl('search') ?>"
                         }
                     }
                 }

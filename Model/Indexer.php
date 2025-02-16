@@ -16,17 +16,46 @@ abstract class Indexer implements MviewActionInterface, IndexerActionInterface
     public const INDEXER_ID = '';
     public const BATCH_SIZE = 5000;
 
+    /**
+     * @param ResourceConnection $resource
+     * @param TimezoneInterface $timezone
+     * @param ResolverInterface $localeResolver
+     * @param IndexerConfig $indexerConfig
+     * @param ClientInterface $client
+     */
     public function __construct(
         protected ResourceConnection $resource,
         protected TimezoneInterface $timezone,
         protected ResolverInterface $localeResolver,
         protected IndexerConfig $indexerConfig,
         protected ClientInterface $client
-    ) {}
+    ) {
+        //
+    }
 
+    /**
+     * Get documents for indexing.
+     *
+     * @param array $ids
+     * @param int $page
+     * @param int $pageSize
+     *
+     * @return array
+     */
     abstract protected function getDocuments(array $ids, int $page, int $pageSize): array;
+
+    /**
+     * Get documents count.
+     *
+     * @param array $ids
+     *
+     * @return int
+     */
     abstract protected function getDocumentsCount(array $ids): int;
 
+    /**
+     * @inheritDoc
+     */
     public function execute($ids)
     {
         if (!$ids && $this->client->indexExists($this->getIndexName())) {
@@ -86,26 +115,48 @@ abstract class Indexer implements MviewActionInterface, IndexerActionInterface
         }
     }
 
+    /**
+     * @inheritDoc
+     */
     public function executeFull()
     {
         $this->execute([]);
     }
 
+    /**
+     * @inheritDoc
+     */
     public function executeList(array $ids)
     {
         $this->execute($ids);
     }
 
+    /**
+     * @inheritDoc
+     */
     public function executeRow($id)
     {
         $this->execute([$id]);
     }
 
+    /**
+     * @inheritDoc
+     */
     protected function getIndexName(): string
     {
         return static::INDEXER_ID;
     }
 
+    /**
+     * Format date according to locale and timezone settings.
+     *
+     * @param string|null $date
+     * @param string|null $timezone
+     * @return string
+     *
+     * @throws \DateInvalidTimeZoneException
+     * @throws \DateMalformedStringException
+     */
     protected function getFormattedDate(?string $date, ?string $timezone = null): string
     {
         if (!$date) {

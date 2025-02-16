@@ -10,6 +10,9 @@ class CatalogPriceRule extends Indexer
 {
     public const INDEXER_ID = 'admin_search_catalog_price_rules';
 
+    /**
+     * @inheritDoc
+     */
     protected function getDocuments(array $ids, int $page, int $pageSize): array
     {
         $connection = $this->resource->getConnection();
@@ -47,6 +50,9 @@ class CatalogPriceRule extends Indexer
         return $documents;
     }
 
+    /**
+     * @inheritDoc
+     */
     protected function getDocumentsCount(array $ids): int
     {
         $connection = $this->resource->getConnection();

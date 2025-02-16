@@ -11,6 +11,9 @@ class CartPriceRule extends Indexer
 {
     public const INDEXER_ID = 'admin_search_cart_price_rules';
 
+    /**
+     * @inheritDoc
+     */
     protected function getDocuments(array $ids, int $page, int $pageSize): array
     {
         $connection = $this->resource->getConnection();
@@ -48,6 +51,9 @@ class CartPriceRule extends Indexer
         return $documents;
     }
 
+    /**
+     * @inheritDoc
+     */
     protected function getDocumentsCount(array $ids): int
     {
         $connection = $this->resource->getConnection();

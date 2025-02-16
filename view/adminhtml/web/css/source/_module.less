@@ -14,34 +14,34 @@
 
 & when (@media-common = true) {
     .searchbar {
-        display: grid;
-        grid-template-columns: 1fr @search__width 1fr;
-        gap: 2rem;
-        justify-content: center;
         align-items: center;
         background: @header__background-color;
         color: @header__color;
-        width: 100%;
-        padding: 1rem 1rem 1rem 9.8rem;
-        z-index: @header__z-index;
+        display: grid;
+        gap: 2rem;
+        grid-template-columns: 1fr @search__width 1fr;
         height: 6rem;
+        justify-content: center;
+        padding: 1rem 1rem 1rem 9.8rem;
+        width: 100%;
+        z-index: @header__z-index;
 
         &._sticky {
+            left: 0;
             position: fixed;
             top: 0;
-            left: 0;
         }
 
         &__right {
+            align-items: center;
             display: flex;
             justify-content: flex-end;
-            align-items: center;
 
             .admin__action-dropdown {
                 background: @header__background-color;
-                color: @header__color;
                 border: none !important;
                 box-shadow: none !important;
+                color: @header__color;
             }
 
             .admin__action-dropdown:after,
@@ -61,8 +61,8 @@
     }
 
     .search {
-        position: relative;
         color: @color-black;
+        position: relative;
 
         svg {
             display: block;
@@ -70,54 +70,56 @@
         }
 
         &__icon {
-            width: 16px;
+            left: .751rem;
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            left: .751rem;
             transition: opacity .2s ease-in-out;
+            width: 16px;
         }
 
-        &._loading {
-            .search__icon {
-                opacity: .5;
+        &.loading {
+            .search {
+                &__icon {
+                    opacity: .5;
+                }
             }
         }
 
         &__input {
-            min-width: @search__width;
             border: none;
             border-radius: .5rem;
+            color: @color-black;
+            min-width: @search__width;
             padding: .5rem 6.5rem .5rem ~'calc(1.5rem + 16px)';
-            color: black;
         }
 
         &__hotkey {
-            position: absolute;
-            top: 50%;
-            right: .425rem;
-            height: 2rem;
-            transform: translateY(-50%);
-            font-size: 1rem;
-            line-height: 1;
-            color: @header__color;
             background: @header__background-color;
-            padding: .5rem;
             border-radius: .275rem;
+            color: @header__color;
+            font-size: 1rem;
+            height: 2rem;
+            line-height: 1;
+            padding: .5rem;
+            position: absolute;
+            right: .425rem;
+            top: 50%;
+            transform: translateY(-50%);
         }
 
         &__results {
-            position: absolute;
-            bottom: -.5rem;
-            left: 0;
-            z-index: @z-index-7;
-            transform: translateY(100%);
-            padding: 1rem;
             background: @color-white;
-            color: @color-black;
-            width: 100%;
             border-radius: 5px;
+            bottom: -.5rem;
             box-shadow: 0 4px 8px rgba(0, 0, 0, .1), 0 2px 4px rgba(0, 0, 0, .06);
+            color: @color-black;
+            left: 0;
+            padding: 1rem;
+            position: absolute;
+            transform: translateY(100%);
+            width: 100%;
+            z-index: @z-index-7;
 
             &__empty {
                 padding: 1rem;
@@ -129,24 +131,24 @@
         }
 
         &__hit {
-            display: flex;
             align-items: center;
-            gap: 1rem;
-            padding: .75rem 1rem;
             border-radius: .5rem;
-            overflow: hidden;
             cursor: pointer;
+            display: flex;
+            gap: 1rem;
+            overflow: hidden;
+            padding: .75rem 1rem;
 
             &:focus,
             &:hover {
-                box-shadow: none;
                 background: @color-lighter-gray;
+                box-shadow: none;
             }
 
             &__icon {
-                width: 18px;
                 display: flex;
                 justify-content: center;
+                width: 18px;
             }
 
             &__content {
@@ -158,8 +160,8 @@
                     gap: 5px;
 
                     span {
-                        font-size: 1.2rem;
                         color: @color-very-dark-gray2;
+                        font-size: 1.2rem;
                         text-wrap: nowrap;
                     }
                 }
@@ -169,8 +171,8 @@
         ._ellipsis {
             max-width: 100%;
             overflow: hidden;
-            text-wrap: nowrap;
             text-overflow: ellipsis;
+            text-wrap: nowrap;
         }
     }
 

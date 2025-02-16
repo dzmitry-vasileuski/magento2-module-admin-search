@@ -10,9 +10,20 @@ use Vasileuski\AdminSearch\Api\ClientInterface;
 
 class Client implements ClientInterface
 {
+    /**
+     * @var string
+     */
     private string $engine;
+
+    /**
+     * @var \Magento\AdvancedSearch\Model\Client\ClientInterface|\Smile\ElasticsuiteCore\Api\Client\ClientInterface
+     */
     private object $client;
 
+    /**
+     * @param ClientResolver $clientResolver
+     * @param ObjectManagerInterface $objectManager
+     */
     public function __construct(
         ClientResolver $clientResolver,
         ObjectManagerInterface $objectManager
@@ -25,6 +36,9 @@ class Client implements ClientInterface
         };
     }
 
+    /**
+     * @inheritDoc
+     */
     public function search(array $query): array
     {
         return match ($this->engine) {
@@ -33,6 +47,9 @@ class Client implements ClientInterface
         };
     }
 
+    /**
+     * @inheritDoc
+     */
     public function bulk(array $query): void
     {
         match ($this->engine) {
@@ -41,16 +58,25 @@ class Client implements ClientInterface
         };
     }
 
+    /**
+     * @inheritDoc
+     */
     public function deleteIndex(string $index): void
     {
         $this->client->deleteIndex($index);
     }
 
+    /**
+     * @inheritDoc
+     */
     public function createIndex(string $index, array $params = []): void
     {
         $this->client->createIndex($index, $params);
     }
 
+    /**
+     * @inheritDoc
+     */
     public function indexExists(string $index): bool
     {
         return $this->client->indexExists($index);

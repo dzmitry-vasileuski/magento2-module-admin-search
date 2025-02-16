@@ -16,6 +16,14 @@ class Order extends Indexer
 {
     public const INDEXER_ID = 'admin_search_orders';
 
+    /**
+     * @param Config $orderConfig
+     * @param ResourceConnection $resource
+     * @param TimezoneInterface $timezone
+     * @param ResolverInterface $localeResolver
+     * @param IndexerConfig $indexerConfig
+     * @param ClientInterface $client
+     */
     public function __construct(
         private Config $orderConfig,
         ResourceConnection $resource,
@@ -33,6 +41,9 @@ class Order extends Indexer
         );
     }
 
+    /**
+     * @inheritDoc
+     */
     protected function getDocuments(array $ids, int $page, int $pageSize): array
     {
         $connection = $this->resource->getConnection();
@@ -77,6 +88,9 @@ class Order extends Indexer
         return $documents;
     }
 
+    /**
+     * @inheritDoc
+     */
     protected function getDocumentsCount(array $ids): int
     {
         $connection = $this->resource->getConnection();

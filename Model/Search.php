@@ -11,13 +11,28 @@ use Vasileuski\AdminSearch\Api\ClientInterface;
 
 class Search implements ArgumentInterface
 {
+    /**
+     * @param UrlInterface $url
+     * @param Session $session
+     * @param IndexerConfig $indexerConfig
+     * @param ClientInterface $client
+     */
     public function __construct(
         private UrlInterface $url,
         private Session $session,
         private IndexerConfig $indexerConfig,
         private ClientInterface $client,
-    ) {}
+    ) {
+        //
+    }
 
+    /**
+     * Perform search query
+     *
+     * @param string $query
+     *
+     * @return array
+     */
     public function search(string $query): array
     {
         $allowedIndices = $this->getAllowedIndices();
@@ -116,6 +131,11 @@ class Search implements ArgumentInterface
         }, $hits);
     }
 
+    /**
+     * Get allowed indices for search.
+     *
+     * @return array
+     */
     public function getAllowedIndices(): array
     {
         $allowedIndices = [];

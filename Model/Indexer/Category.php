@@ -7,6 +7,8 @@ namespace Vasileuski\AdminSearch\Model\Indexer;
 use Magento\Catalog\Model\Category as CategoryModel;
 use Magento\Eav\Model\Config;
 use Magento\Framework\App\ResourceConnection;
+use Magento\Framework\Exception\LocalizedException;
+use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Locale\ResolverInterface;
 use Magento\Framework\Stdlib\DateTime\TimezoneInterface;
 use Magento\Store\Model\StoreManagerInterface;
@@ -18,6 +20,15 @@ class Category extends Indexer
 {
     public const INDEXER_ID = 'admin_search_categories';
 
+    /**
+     * @param Config $eavConfig
+     * @param StoreManagerInterface $storeManager
+     * @param ResourceConnection $resource
+     * @param TimezoneInterface $timezone
+     * @param ResolverInterface $localeResolver
+     * @param IndexerConfig $indexerConfig
+     * @param ClientInterface $client
+     */
     public function __construct(
         private Config $eavConfig,
         private StoreManagerInterface $storeManager,
@@ -36,6 +47,9 @@ class Category extends Indexer
         );
     }
 
+    /**
+     * @inheritDoc
+     */
     protected function getDocuments(array $ids, int $page, int $pageSize): array
     {
         $entities = $this->getCategories($ids, $page, $pageSize);
@@ -43,6 +57,7 @@ class Category extends Indexer
         $parentEntityIds = [];
 
         foreach ($entities as $entity) {
+            // phpcs:ignore
             $parentEntityIds = array_merge(
                 $parentEntityIds,
                 array_slice(explode('/', $entity['path']), 1)
@@ -76,6 +91,18 @@ class Category extends Indexer
         return $documents;
     }
 
+    /**
+     * Get categories by IDs
+     *
+     * @param array $ids
+     * @param int|null $page
+     * @param int|null $pageSize
+     *
+     * @return array
+     *
+     * @throws LocalizedException
+     * @throws NoSuchEntityException
+     */
     private function getCategories(array $ids, ?int $page = null, ?int $pageSize = null): array
     {
         $connection = $this->resource->getConnection();
@@ -116,6 +143,9 @@ class Category extends Indexer
         return $connection->fetchAll($select);
     }
 
+    /**
+     * @inheritDoc
+     */
     protected function getDocumentsCount(array $ids): int
     {
         $connection = $this->resource->getConnection();
