@@ -20,8 +20,8 @@
             </block>
         </referenceContainer>
 
-        <!--<referenceBlock name="user" remove="true"/>
+        <referenceBlock name="user" remove="true"/>
         <referenceBlock name="notification.messages" remove="true"/>
-        <referenceBlock name="global.search" remove="true"/>-->
+        <referenceBlock name="global.search" remove="true"/>
     </body>
 </page>
